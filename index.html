@@ -1,28 +1,182 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <script>
-      (function () {
-        const basePath = '%BASE_URL%';
-        const redirect = sessionStorage.getItem('redirect');
-        if (redirect) {
-          sessionStorage.removeItem('redirect');
-          if (
-            redirect !== basePath + '/' &&
-            redirect !== basePath + '/index.html'
-          ) {
-            window.history.pushState(null, '', redirect);
-          }
-        }
-      })();
-    </script>
-    <link rel="icon" type="image/png" href="%BASE_URL%/images/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Running Page</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跑步记录</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+.container { max-width: 600px; margin: 0 auto; }
+h1 { text-align: center; margin-bottom: 20px; color: white; font-size: 28px; }
+.stats { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+.stat-row:last-child { border-bottom: none; }
+.stat-label { color: #666; }
+.stat-value { font-weight: bold; color: #667eea; font-size: 18px; }
+.run-list { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.run-item { padding: 16px 0; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; }
+.run-item:hover { background: #f8f9fa; border-radius: 8px; }
+.run-item:last-child { border-bottom: none; }
+.run-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.run-name { font-weight: 600; color: #333; font-size: 16px; }
+.run-date { color: #999; font-size: 13px; }
+.run-details { color: #667eea; font-size: 14px; }
+.icon { font-size: 24px; margin-right: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🏃 跑步记录</h1>
+
+<div class="stats">
+  <div class="stat-row">
+    <span class="stat-label">📊 总跑步次数</span>
+    <span class="stat-value">18 次</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">📏 总距离</span>
+    <span class="stat-value">80.4 km</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">📈 平均距离</span>
+    <span class="stat-value">4.5 km</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">📅 最近跑步</span>
+    <span class="stat-value">2026-05-30</span>
+  </div>
+</div>
+
+<div class="run-list">
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-30</span>
+    </div>
+    <div class="run-details">距离: 6.2km · 时间: 53分钟 · 配速: 8.7 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-28</span>
+    </div>
+    <div class="run-details">距离: 6.1km · 时间: 53分钟 · 配速: 8.8 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-27</span>
+    </div>
+    <div class="run-details">距离: 4.4km · 时间: 37分钟 · 配速: 8.4 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-26</span>
+    </div>
+    <div class="run-details">距离: 6.2km · 时间: 58分钟 · 配速: 9.3 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-25</span>
+    </div>
+    <div class="run-details">距离: 2.4km · 时间: 22分钟 · 配速: 9.5 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>午后跑步</span>
+      <span class="run-date">2026-05-24</span>
+    </div>
+    <div class="run-details">距离: 6.1km · 时间: 56分钟 · 配速: 9.2 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-22</span>
+    </div>
+    <div class="run-details">距离: 4.2km · 时间: 39分钟 · 配速: 9.5 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-21</span>
+    </div>
+    <div class="run-details">距离: 6.0km · 时间: 55分钟 · 配速: 9.2 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-20</span>
+    </div>
+    <div class="run-details">距离: 6.0km · 时间: 49分钟 · 配速: 8.3 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚行走</span>
+      <span class="run-date">2026-05-18</span>
+    </div>
+    <div class="run-details">距离: 2.7km · 时间: 34分钟 · 配速: 12.8 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-17</span>
+    </div>
+    <div class="run-details">距离: 4.4km · 时间: 41分钟 · 配速: 9.4 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-16</span>
+    </div>
+    <div class="run-details">距离: 4.4km · 时间: 41分钟 · 配速: 9.4 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-15</span>
+    </div>
+    <div class="run-details">距离: 4.4km · 时间: 41分钟 · 配速: 9.5 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-14</span>
+    </div>
+    <div class="run-details">距离: 4.5km · 时间: 43分钟 · 配速: 9.7 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-13</span>
+    </div>
+    <div class="run-details">距离: 4.2km · 时间: 41分钟 · 配速: 9.9 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-12</span>
+    </div>
+    <div class="run-details">距离: 4.3km · 时间: 41分钟 · 配速: 9.7 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>傍晚跑步</span>
+      <span class="run-date">2026-05-11</span>
+    </div>
+    <div class="run-details">距离: 3.5km · 时间: 38分钟 · 配速: 11.1 min/km</div>
+  </div>
+  <div class="run-item">
+    <div class="run-header">
+      <span class="run-name"><span class="icon">🏃</span>午后跑步</span>
+      <span class="run-date">2026-05-02</span>
+    </div>
+    <div class="run-details">距离: 0.3km · 时间: 3分钟 · 配速: 9.9 min/km</div>
+  </div>
+
+</div>
+</div>
+</body>
 </html>
